@@ -61,6 +61,7 @@ class EpanodeFunctionalTest {
         compose.onAllNodesWithText("Library").onFirst().performClick()
         compose.onNodeWithText("Songs, artists, albums, lyrics…").performTextInput("Nigt Drive")
         compose.waitUntil(5000) { compose.onAllNodesWithText("Night Drive").fetchSemanticsNodes().isNotEmpty() }
+        androidx.test.espresso.Espresso.closeSoftKeyboard()
         compose.onNodeWithText("Night Drive").performClick()
         compose.waitUntil(15000) { PlaybackService.playbackError.value == null && app.store.library.value.tracks.any { it.id == songs[0].id && it.plays > 0 } }
         openSongMenu()
@@ -139,6 +140,17 @@ class EpanodeFunctionalTest {
         compose.runOnUiThread { assertEquals(Player.REPEAT_MODE_ALL, connection.controller!!.repeatMode); connection.controller!!.pause() }
     }
     private fun openSongMenu() {
+        // Compose idle does not include the platform IME animation. Its closing resize can
+        // move a node between resolving its bounds and delivering the injected touch.
+        compose.waitUntil(5000) {
+            var hidden = false
+            compose.runOnUiThread {
+                hidden = androidx.core.view.ViewCompat.getRootWindowInsets(compose.activity.window.decorView)
+                    ?.isVisible(androidx.core.view.WindowInsetsCompat.Type.ime()) == false
+            }
+            hidden
+        }
+        compose.waitForIdle()
         compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst()
             .performScrollTo().assertIsDisplayed().performClick()
         try {
