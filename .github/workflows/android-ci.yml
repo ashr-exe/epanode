@@ -24,8 +24,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@4733eaac7c1b0da527e4206b7671e0061de1ce37 # v6
-      - name: Install pinned Android SDK components
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Verify pinned Android SDK components
+        run: |
+          test -f "$ANDROID_HOME/platforms/android-36/android.jar"
+          test -x "$ANDROID_HOME/build-tools/35.0.0/aapt2"
       - name: Test, lint, and build
         run: ./gradlew --no-daemon :app:testDebugUnitTest :app:lintDebug :app:assembleRelease :app:assembleDebugAndroidTest
       - name: Upload verification reports
@@ -56,8 +58,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@4733eaac7c1b0da527e4206b7671e0061de1ce37 # v6
-      - name: Install compile SDK
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Verify compile SDK
+        run: |
+          test -f "$ANDROID_HOME/platforms/android-36/android.jar"
+          test -x "$ANDROID_HOME/build-tools/35.0.0/aapt2"
       - name: Enable KVM for the ephemeral runner
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
