@@ -1,0 +1,10 @@
+Observed 2026-09-28 on the macOS ARM64 build host.
+
+Android emulator: 37.1.11
+Virtual device: RepriseTest, Android API 35, Google APIs ARM64
+Result: emulator process crashed before Android boot; adb showed no connected device.
+Crash: SIGILL / EXC_BAD_INSTRUCTION in init_cache_info.
+Related host check: sysctl hw.cachelinesize returned Operation not permitted.
+QEMU cache-line initialization falls back to an unavailable processor-register read when the host query fails.
+
+No device instrumentation tests were executed. Robolectric framework/UI tests were used for the automated Android checks described in TESTING.md. These do not substitute for actual audio, Bluetooth, battery, or device-memory testing.

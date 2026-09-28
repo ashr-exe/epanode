@@ -1,0 +1,12 @@
+-keep class org.mozilla.javascript.** { *; }
+-keep class org.mozilla.classfile.ClassFileWriter
+-dontwarn org.mozilla.javascript.tools.**
+-dontwarn java.lang.management.**
+-dontwarn javax.management.**
+-dontwarn org.slf4j.**
+# Optional desktop integrations in Rhino are unavailable on Android; NewPipe uses the interpreter.
+-dontwarn java.beans.**
+-dontwarn javax.script.**
+-dontwarn jdk.dynalink.**
+-keep class org.schabi.newpipe.extractor.timeago.patterns.** { *; }
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite { <fields>; }

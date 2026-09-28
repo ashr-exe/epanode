@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="app.epanode.core.MusicLogicTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-09-28T06:23:57.427Z" hostname="redacted" time="0.281">
+  <properties/>
+  <testcase name="embeddedTagsBeatWeirdFilenames" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="recommendationIsDeterministicAndExcludesSeed" classname="app.epanode.core.MusicLogicTest" time="0.04"/>
+  <testcase name="lyricQueriesAreIndexedAndRankBelowTitles" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="unicodeAndMultilingualSearchWorks" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="timeEntryHasMillisecondPrecision" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="filenameCleanupIsConservative" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="shareTextAndPlaylistUrlsNormalizeCorrectly" classname="app.epanode.core.MusicLogicTest" time="0.001"/>
+  <testcase name="fuzzySearchAcceptsTyposButNotUnrelatedWords" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <testcase name="identityIsStableAndDoesNotDependOnTitle" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <testcase name="lrcSupportsRepeatedTimestampsOffsetsAndFractions" classname="app.epanode.core.MusicLogicTest" time="0.002"/>
+  <testcase name="filenamesCannotEscapeStorageFolder" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <testcase name="clipsRejectInvalidBoundaries" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <testcase name="maliciousHostsAreNotClassifiedAsProviders" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <testcase name="tenThousandTrackSearchHasBoundedRuntime" classname="app.epanode.core.MusicLogicTest" time="0.233"/>
+  <testcase name="searchDoesNotMatchOnlyOneQueryWord" classname="app.epanode.core.MusicLogicTest" time="0.0"/>
+  <system-out><![CDATA[PERFORMANCE search_10000_tracks_ms=226
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

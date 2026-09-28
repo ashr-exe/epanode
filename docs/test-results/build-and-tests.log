@@ -1,0 +1,321 @@
+
+> Configure project :app
+w: file://<project>/app/build.gradle.kts:29:21: 'jvmTarget: String' is deprecated. Please migrate to the compilerOptions DSL. More details are here: https://kotl.in/u1r8ln
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+
+> Task :app:generateDebugBuildConfig
+Caught exception: Could not start the FSEvents stream: <project>
+
+> Task :app:checkDebugAarMetadata
+> Task :app:processDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :app:compileDebugNavigationResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:parseDebugLocalResources
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:mergeDebugResources
+> Task :app:processDebugUnitTestManifest
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:extractProguardFiles
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs
+> Task :app:buildKotlinToolingMetadata
+> Task :app:mergeReleaseArtProfile
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+
+> Task :app:extractReleaseNativeSymbolTables
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:expandReleaseL8ArtProfileWildcards
+> Task :app:generateReleaseBuildConfig
+> Task :app:checkReleaseAarMetadata
+> Task :app:processReleaseNavigationResources
+> Task :app:compileReleaseNavigationResources
+> Task :app:generateReleaseResValues
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:processDebugResources
+> Task :app:mergeReleaseResources
+> Task :app:packageDebugUnitTestForUnitTest
+> Task :app:generateDebugUnitTestConfig
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:mergeReleaseStartupProfile UP-TO-DATE
+> Task :app:javaPreCompileRelease
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:processDebugAndroidTestManifest
+> Task :app:generateDebugAndroidTestBuildConfig
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:processReleaseManifestForPackage
+> Task :app:processDebugAndroidTestNavigationResources
+> Task :app:compileDebugAndroidTestNavigationResources
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:generateDebugAndroidTestResources
+> Task :app:javaPreCompileDebugAndroidTest
+> Task :app:mergeDebugAndroidTestShaders
+> Task :app:processReleaseResources
+> Task :app:compileDebugAndroidTestShaders NO-SOURCE
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets
+> Task :app:compressDebugAndroidTestAssets
+> Task :app:desugarDebugAndroidTestFileDependencies
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:checkDebugAndroidTestDuplicateClasses
+> Task :app:processDebugAndroidTestResources
+> Task :app:mergeExtDexDebugAndroidTest
+> Task :app:mergeLibDexDebugAndroidTest
+> Task :app:mergeDebugAndroidTestJniLibFolders
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeDebugNativeLibs
+> Task :app:validateSigningDebugAndroidTest
+> Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :app:writeDebugAndroidTestSigningConfigVersions
+
+> Task :app:compileDebugKotlin
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:94:78 'val Icons.Rounded.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.ArrowBack.
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:141:45 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:143:45 'val Icons.Rounded.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.PlaylistAdd.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:59:223 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:60:151 'val Icons.Rounded.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.PlaylistAdd.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:112:158 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/PlayerScreens.kt:130:125 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+
+> Task :app:compileReleaseKotlin
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:94:78 'val Icons.Rounded.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.ArrowBack.
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:141:45 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/EpanodeScreen.kt:143:45 'val Icons.Rounded.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.PlaylistAdd.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:59:223 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:60:151 'val Icons.Rounded.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.PlaylistAdd.
+w: file://<project>/app/src/main/java/app/epanode/ui/LibraryScreens.kt:112:158 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+w: file://<project>/app/src/main/java/app/epanode/ui/PlayerScreens.kt:130:125 'val Icons.Rounded.QueueMusic: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.QueueMusic.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+
+> Task :app:testDebugUnitTest
+
+AndroidStoreTest STANDARD_ERROR
+    [Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
+
+AndroidStoreTest > loopCannotExtendPastTrackOrReferToMissingAudio[29] PASSED
+
+AndroidStoreTest > invalidBackupDoesNotPartiallyMutateDatabase[29] PASSED
+
+AndroidStoreTest > editsLikesAndHistorySurviveRescansAndDatabaseReopen[29] PASSED
+
+AndroidStoreTest > backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths[29] PASSED
+
+AndroidStoreTest > scannerOnlyPrunesDeviceRowsAfterCompleteScan[29] PASSED
+
+AndroidStoreTest > playlistOrderDedupAndRemovalPersist[29] PASSED
+
+AndroidStoreTest > downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled[29] PASSED
+
+AndroidStoreTest > downloadsRoundTripFailureProgressAndRetryState[29] PASSED
+
+AndroidStoreTest > loopCannotExtendPastTrackOrReferToMissingAudio PASSED
+
+AndroidStoreTest > invalidBackupDoesNotPartiallyMutateDatabase PASSED
+
+AndroidStoreTest > editsLikesAndHistorySurviveRescansAndDatabaseReopen PASSED
+
+AndroidStoreTest > backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths PASSED
+
+AndroidStoreTest > scannerOnlyPrunesDeviceRowsAfterCompleteScan PASSED
+
+AndroidStoreTest > playlistOrderDedupAndRemovalPersist PASSED
+
+AndroidStoreTest > downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled PASSED
+
+AndroidStoreTest > downloadsRoundTripFailureProgressAndRetryState PASSED
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart[29] STANDARD_ERROR
+    Invalid ID 0x00000000.
+
+> Task :app:lintAnalyzeDebug
+
+> Task :app:testDebugUnitTest
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart[29] STANDARD_OUT
+    UI STEP library
+    UI STEP search
+    UI STEP menu
+    UI STEP like
+    UI STEP menu
+    UI STEP playlist
+    UI STEP menu
+    UI STEP clip
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart[29] PASSED
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart STANDARD_ERROR
+    android.os.ServiceManager$ServiceNotFoundException: No service published for: media_metrics
+    	at android.os.ServiceManager.getServiceOrThrow(ServiceManager.java:203)
+    	at android.app.SystemServiceRegistry$131.createService(SystemServiceRegistry.java:1577)
+    	at android.app.SystemServiceRegistry$131.createService(SystemServiceRegistry.java:1572)
+    	at android.app.SystemServiceRegistry$CachedServiceFetcher.getService(SystemServiceRegistry.java:2231)
+    	at android.app.SystemServiceRegistry.getSystemService(SystemServiceRegistry.java:1812)
+    	at android.app.ContextImpl.getSystemService(ContextImpl.java:2241)
+    	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+    	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    	at org.robolectric.shadows.ShadowContextImpl$ContextImplReflector$$Reflector164.getSystemService(Unknown Source)
+    	at org.robolectric.shadows.ShadowContextImpl.getSystemService(ShadowContextImpl.java:83)
+    	at android.app.ContextImpl.getSystemService(ContextImpl.java)
+    	at android.content.ContextWrapper.getSystemService(ContextWrapper.java:936)
+    	at androidx.media3.exoplayer.analytics.MediaMetricsListener.create(MediaMetricsListener.java:107)
+    	at androidx.media3.exoplayer.ExoPlayerImpl$Api31.lambda$registerMediaMetricsListener$0(ExoPlayerImpl.java:3443)
+    	at android.os.Handler.handleCallback(Handler.java:959)
+    	at android.os.Handler.dispatchMessage(Handler.java:100)
+    	at android.os.Looper.loopOnce(Looper.java:232)
+    	at android.os.Looper.loop(Looper.java:317)
+    	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+    	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    	at org.robolectric.shadows.ShadowPausedLooper$LooperReflector$$Reflector159.loop(Unknown Source)
+    	at org.robolectric.shadows.ShadowPausedLooper.loop(ShadowPausedLooper.java:509)
+    	at android.os.Looper.loop(Looper.java)
+    	at android.os.HandlerThread.run(HandlerThread.java:85)
+    Invalid ID 0x00000000.
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart STANDARD_OUT
+    UI STEP library
+    UI STEP search
+    UI STEP menu
+    UI STEP like
+    UI STEP menu
+    UI STEP playlist
+    UI STEP menu
+    UI STEP clip
+
+AndroidUiTest > navigateSearchLikeCreatePlaylistAndSavePreciseBestPart PASSED
+
+CatalogLiveTest > searchAndResolveAnOpenMusicTrack STANDARD_OUT
+    LIVE music search and audio resolution succeeded; format=m4a
+
+CatalogLiveTest > searchAndResolveAnOpenMusicTrack PASSED
+
+CatalogLiveTest > spotifyPublicTrackMetadata STANDARD_OUT
+    LIVE Spotify public track metadata succeeded
+
+CatalogLiveTest > spotifyPublicTrackMetadata PASSED
+
+MusicLogicTest > embeddedTagsBeatWeirdFilenames PASSED
+
+MusicLogicTest > recommendationIsDeterministicAndExcludesSeed PASSED
+
+MusicLogicTest > lyricQueriesAreIndexedAndRankBelowTitles PASSED
+
+MusicLogicTest > unicodeAndMultilingualSearchWorks PASSED
+
+MusicLogicTest > timeEntryHasMillisecondPrecision PASSED
+
+MusicLogicTest > filenameCleanupIsConservative PASSED
+
+MusicLogicTest > shareTextAndPlaylistUrlsNormalizeCorrectly PASSED
+
+MusicLogicTest > fuzzySearchAcceptsTyposButNotUnrelatedWords PASSED
+
+MusicLogicTest > identityIsStableAndDoesNotDependOnTitle PASSED
+
+MusicLogicTest > lrcSupportsRepeatedTimestampsOffsetsAndFractions PASSED
+
+MusicLogicTest > filenamesCannotEscapeStorageFolder PASSED
+
+MusicLogicTest > clipsRejectInvalidBoundaries PASSED
+
+MusicLogicTest > maliciousHostsAreNotClassifiedAsProviders PASSED
+
+MusicLogicTest > tenThousandTrackSearchHasBoundedRuntime STANDARD_OUT
+    PERFORMANCE search_10000_tracks_ms=226
+
+MusicLogicTest > tenThousandTrackSearchHasBoundedRuntime PASSED
+
+MusicLogicTest > searchDoesNotMatchOnlyOneQueryWord PASSED
+
+PlaybackModelTest > invalidOrUnrelatedClipFallsBackToTheCompleteSong[29] PASSED
+
+PlaybackModelTest > clippedMediaItemCarriesExactBoundariesAndLocalUri[29] PASSED
+
+PlaybackModelTest > invalidOrUnrelatedClipFallsBackToTheCompleteSong PASSED
+
+PlaybackModelTest > clippedMediaItemCarriesExactBoundariesAndLocalUri PASSED
+
+> Task :app:lintReportDebug
+Wrote HTML report to file://<project>/app/build/reports/lint-results-debug.html
+
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:lintDebug
+> Task :app:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processReleaseJavaRes
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:compileDebugAndroidTestKotlin
+> Task :app:compileDebugAndroidTestJavaWithJavac
+> Task :app:dexBuilderDebugAndroidTest
+> Task :app:mergeDebugAndroidTestGlobalSynthetics
+> Task :app:processDebugAndroidTestJavaRes
+> Task :app:mergeProjectDexDebugAndroidTest
+> Task :app:mergeDebugAndroidTestJavaResource
+> Task :app:packageDebugAndroidTest
+> Task :app:createDebugAndroidTestApkListingFileRedirect
+> Task :app:assembleDebugAndroidTest
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:minifyReleaseWithR8
+> Task :app:convertShrunkResourcesToBinaryRelease
+> Task :app:optimizeReleaseResources
+> Task :app:l8DexDesugarLibRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+
+BUILD SUCCESSFUL in 1m 16s
+123 actionable tasks: 121 executed, 2 up-to-date
