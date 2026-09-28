@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="app.epanode.core.AndroidUiTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-28T06:23:42.040Z" hostname="redacted" time="12.118">
+<testsuite name="app.epanode.core.AndroidUiTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-28T07:45:13.644Z" hostname="redacted" time="11.005">
   <properties/>
-  <testcase name="navigateSearchLikeCreatePlaylistAndSavePreciseBestPart[29]" classname="app.epanode.core.AndroidUiTest" time="6.108"/>
-  <testcase name="navigateSearchLikeCreatePlaylistAndSavePreciseBestPart" classname="app.epanode.core.AndroidUiTest" time="6.001"/>
+  <testcase name="navigateSearchLikeCreatePlaylistAndSavePreciseBestPart[29]" classname="app.epanode.core.AndroidUiTest" time="5.34"/>
+  <testcase name="navigateSearchLikeCreatePlaylistAndSavePreciseBestPart" classname="app.epanode.core.AndroidUiTest" time="5.66"/>
   <system-out><![CDATA[UI STEP library
 UI STEP search
 UI STEP menu

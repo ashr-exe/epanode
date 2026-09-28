@@ -1,0 +1,28 @@
+{
+  "verifiedCommit": "77c6d5f8b3ea2345d8239f1ab74617fb07bd61f9",
+  "localTests": {
+    "passed": 39,
+    "failed": 0,
+    "skipped": 0
+  },
+  "instrumentation": {
+    "api": 35,
+    "abi": "x86_64",
+    "passed": 3,
+    "failed": 0
+  },
+  "runs": [
+    {
+      "name": "CodeQL",
+      "url": "https://github.com/ashr-exe/epanode/actions/runs/36393359903",
+      "conclusion": "success",
+      "updatedAt": "2026-09-28T07:47:45Z"
+    },
+    {
+      "name": "Android CI",
+      "url": "https://github.com/ashr-exe/epanode/actions/runs/36393359892",
+      "conclusion": "success",
+      "updatedAt": "2026-09-28T07:49:02Z"
+    }
+  ]
+}

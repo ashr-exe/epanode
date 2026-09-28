@@ -6,14 +6,15 @@ Verification date: 28 September 2026. This report describes the delivered APK an
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Automated tests | **39 passed; 0 failed, 0 errors, 0 skipped** | Logic, Android-framework persistence, Compose workflows, playback item configuration, and two live provider checks |
+| Local automated tests | **39 passed; 0 failed, 0 errors, 0 skipped** | Logic, Android-framework persistence, Compose workflows, playback item configuration, and two live provider checks |
 | Android framework versions | API 29 and 35 | Robolectric tests exercise Android 10 and 15 framework behavior; these are not physical devices |
-| Android lint | **0 errors, 32 warnings** | Static analysis passed; warnings remain, including API/style/dependency update suggestions |
+| Android lint | **0 errors, 33 warnings** | Static analysis passed; warnings remain, including API/style/dependency update suggestions |
 | Optimized release build | Passed | Release compilation, resource packaging, and shrinking completed |
-| Instrumentation test APK | Compiled | Device tests are provided, but could not be executed here |
+| Android 15 instrumentation | **3 passed; 0 failed** | Real emulator touch workflow, clip-position wrapping, highlight queue advancement, and persistence |
+| GitHub Android CI and CodeQL | Passed | Hosted build, tests, lint, and Kotlin/Java security analysis completed |
 | APK signature | Verified, v3, one signer | The delivered evaluation APK is signed with a development certificate |
 | APK size | **6,227,291 bytes (5.94 MiB)** | Measured file size; this does not measure installed size or runtime memory |
-| Fuzzy search benchmark | **226 ms for 10,000 fixture tracks** | One host-JVM measurement; not an Android latency or battery claim |
+| Fuzzy search benchmark | **243 ms for 10,000 fixture tracks** | One host-JVM measurement; not an Android latency or battery claim |
 
 The final Gradle invocation completed successfully with `:app:testDebugUnitTest :app:lintDebug :app:assembleRelease :app:assembleDebugAndroidTest --continue`. Live checks were enabled with `EPANODE_LIVE_TESTS=1`. The environment used JDK 17, Gradle 8.13, Android platform 36, and build-tools 35.0.0. API 36 framework tests were not run.
 
@@ -27,7 +28,7 @@ The final Gradle invocation completed successfully with `:app:testDebugUnitTest 
 | PlaybackModelTest | 4 | Two scenarios on each API: Media3 clipping configuration and safe handling of invalid or missing clip data |
 | CatalogLiveTest | 2 | Live music search and audio URL resolution with the first 4,096 audio bytes retrieved; public Spotify track metadata extraction |
 
-UI tests use semantic actions and a controlled Compose clock. Screenshots were rendered from the real Android Compose view hierarchy using Robolectric native graphics. The pictured tracks are synthetic fixtures. These tests do not prove touch ergonomics, hardware decoding, audible loop seams, or system notification behavior.
+The two Robolectric UI tests use semantic actions and a controlled Compose clock. Screenshots were rendered from the real Android Compose view hierarchy using Robolectric native graphics. The pictured tracks are synthetic fixtures. Those host tests do not prove touch ergonomics, hardware decoding, audible loop seams, or system notification behavior. The separate instrumentation suite uses actual touch injection on a 320 × 640 Android 15 emulator and exercises the Media3 audio engine with synthetic WAV files.
 
 The live search used “Kevin MacLeod Carefree” and resolved an M4A stream. The Spotify check exercised one public track. Full playlist imports, all regions, all provider URL variants, and completed on-device audio downloads were not verified by those two tests. Provider websites can change after this run.
 
@@ -39,16 +40,24 @@ The live search used “Kevin MacLeod Carefree” and resolved an M4A stream. Th
 - No hardware CPU, RAM, battery, thermal, accessibility-service, or long-duration stability measurements are claimed.
 - Automated tests ran against the debug variant. The optimized release built and its signature verified, but its runtime behavior has not been exercised on hardware.
 
-## Device-testing blocker
+## Hosted Android verification
 
-No physical Android device was connected. An ARM64 Android emulator was installed and an API 35 virtual device created, but the emulator process crashed before Android booted. The host sandbox denied `sysctl hw.cachelinesize`; the emulator crashed with `SIGILL` in `init_cache_info`. A booted Android device was therefore unavailable for instrumentation, audio, Bluetooth, and power measurements. [Blocker record](test-results/emulator-blocker.txt).
+[Android CI run 36393359892](https://github.com/ashr-exe/epanode/actions/runs/36393359892) and [CodeQL run 36393359903](https://github.com/ashr-exe/epanode/actions/runs/36393359903) passed for application/test commit `77c6d5f8b3ea2345d8239f1ab74617fb07bd61f9`. The release documentation and evidence were refreshed afterward without changing application code, dependencies, or tests. Hosted unit tests omit the two optional live-provider checks; the local 39-test run above includes them.
 
-The supplied instrumentation tests include synthetic WAV fixtures, UI/persistence journeys, playback repeat and clipping checks, and a best-parts queue check. They compiled successfully; **they have not passed a device run**.
+All three `EpanodeFunctionalTest` cases passed on the hosted API 35 Google APIs x86_64 emulator:
+
+1. Local WAV playback, typo search, liking, playlist creation, naming/saving/playing a clip, full player, lyrics, and queue navigation using injected touch events.
+2. Persistent edits after rescans, playlist deduplication, backup restoration, and invalid clip rejection.
+3. Actual playback position wrapping twice in a one-second clip, exact clip duration, and automatic advancement to the next song's best part with repeat-all enabled.
+
+The device runs exposed compact-screen feedback overlap and test synchronization issues. Song menus now expand fully and scroll, feedback has a dismiss control, playing a search result dismisses the keyboard, and the mini-player has an explicit accessible label. Tests wait for the platform keyboard and dismiss visible confirmation messages before touching covered controls. The loop test measures position wrapping because Media3's remote controller suppresses same-item transition callbacks.
+
+No physical Android phone was connected. The local ARM64 emulator remained blocked by a host sandbox crash before boot (`sysctl hw.cachelinesize` denied, `SIGILL` in `init_cache_info`); the hosted emulator provided the instrumentation run instead. [Local blocker record](test-results/emulator-blocker.txt). Audible quality, physical audio outputs, Bluetooth, and power measurements remain unverified.
 
 ## Required before treating this as a production release
 
 1. Install the optimized APK on actual Android 10, 13, 15, and 16 devices. Exercise permission denial/revocation, first scan, a large library, removable storage, SAF folders, and rescans after moving/deleting files.
-2. Run `./gradlew :app:connectedDebugAndroidTest` on a connected device, then manually repeat the core journeys with the optimized APK.
+2. Repeat `./gradlew :app:connectedDebugAndroidTest` on physical devices, then manually repeat the core journeys with the optimized APK. The completed CI emulator run uses the debug variant.
 3. Listen to MP3, AAC/M4A, FLAC, Ogg, and WAV playback; seek near boundaries; repeat individual clips and playlist clips; assess audible seams and transitions. Exercise malformed and unsupported files.
 4. Verify background and locked-screen playback, media notifications, headset controls, Bluetooth reconnects, calls/audio-focus loss, unplug events, process death, queue restore, speed, sleep timer, and equalizer support.
 5. Complete direct, YouTube, YouTube Music, and public Spotify track/playlist imports. Interrupt network, change Wi-Fi/mobile constraints, cancel and retry, exhaust storage, reboot during a job, and inspect for duplicate tracks or orphaned partial files.
@@ -59,6 +68,8 @@ The supplied instrumentation tests include synthetic WAV fixtures, UI/persistenc
 
 Hostnames and local workspace paths have been redacted from published logs; test outcomes are unchanged.
 
+- [Hosted verification summary](test-results/ci-summary.json)
+- [Instrumentation log excerpt](test-results/android-instrumentation.txt)
 - [Final build and test log](test-results/build-and-tests.log)
 - [Lint report](test-results/lint.txt)
 - [Logic results](test-results/TEST-app.epanode.core.MusicLogicTest.xml)
@@ -73,7 +84,7 @@ Hostnames and local workspace paths have been redacted from published logs; test
 Delivered APK SHA-256:
 
 ```text
-362807a60af69e96bbf5f05ffd3f14b37d86ab5f5770566d2856edb6a351f71c
+669771c31a9c62a51e16ad59cb8ab7ebe35f250914e254662ebf919253c20cbe
 ```
 
 Development signing certificate SHA-256:

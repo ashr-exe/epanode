@@ -48,6 +48,9 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
 <project>/app/build.gradle.kts:59: Warning: A newer version of androidx.test:runner than 1.6.2 is available: 1.7.0 [GradleDependency]
     androidTestImplementation("androidx.test:runner:1.6.2")
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<project>/app/build.gradle.kts:60: Warning: A newer version of androidx.test.espresso:espresso-core than 3.6.1 is available: 3.7.0 [GradleDependency]
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "GradleDependency":
    This detector looks for usages of libraries where the version you are using
@@ -210,4 +213,4 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
    </lint>
    ```
 
-0 errors, 32 warnings
+0 errors, 33 warnings

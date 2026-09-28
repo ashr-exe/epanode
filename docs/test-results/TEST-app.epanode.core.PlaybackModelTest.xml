@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="app.epanode.core.PlaybackModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-28T06:23:57.712Z" hostname="redacted" time="0.052">
+<testsuite name="app.epanode.core.PlaybackModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-28T07:45:27.930Z" hostname="redacted" time="0.076">
   <properties/>
-  <testcase name="invalidOrUnrelatedClipFallsBackToTheCompleteSong[29]" classname="app.epanode.core.PlaybackModelTest" time="0.016"/>
-  <testcase name="clippedMediaItemCarriesExactBoundariesAndLocalUri[29]" classname="app.epanode.core.PlaybackModelTest" time="0.007"/>
-  <testcase name="invalidOrUnrelatedClipFallsBackToTheCompleteSong" classname="app.epanode.core.PlaybackModelTest" time="0.019"/>
-  <testcase name="clippedMediaItemCarriesExactBoundariesAndLocalUri" classname="app.epanode.core.PlaybackModelTest" time="0.008"/>
+  <testcase name="invalidOrUnrelatedClipFallsBackToTheCompleteSong[29]" classname="app.epanode.core.PlaybackModelTest" time="0.022"/>
+  <testcase name="clippedMediaItemCarriesExactBoundariesAndLocalUri[29]" classname="app.epanode.core.PlaybackModelTest" time="0.009"/>
+  <testcase name="invalidOrUnrelatedClipFallsBackToTheCompleteSong" classname="app.epanode.core.PlaybackModelTest" time="0.032"/>
+  <testcase name="clippedMediaItemCarriesExactBoundariesAndLocalUri" classname="app.epanode.core.PlaybackModelTest" time="0.011"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

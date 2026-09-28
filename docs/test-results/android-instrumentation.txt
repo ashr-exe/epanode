@@ -1,0 +1,15 @@
+GitHub Actions instrumentation log excerpt
+Commit: 77c6d5f8b3ea2345d8239f1ab74617fb07bd61f9
+Source: https://github.com/ashr-exe/epanode/actions/runs/36393359892/job/108833953575
+Job outcome: succeeded
+Device: Android 15 / API 35, Google APIs x86_64 emulator
+
+> Task :app:connectedDebugAndroidTest
+Starting 3 tests on emulator-5554 - 15
+emulator-5554 - 15 Tests 1/3 completed. (0 skipped) (0 failed)
+Finished 3 tests on emulator-5554 - 15
+BUILD SUCCESSFUL in 1m 40s
+72 actionable tasks: 72 executed
+
+The complete reports are attached as the instrumented artifact on the linked run.
+This excerpt is not a physical-device or optimized-release runtime test.

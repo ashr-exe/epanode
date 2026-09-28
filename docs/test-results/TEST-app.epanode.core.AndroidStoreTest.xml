@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="app.epanode.core.AndroidStoreTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-09-28T06:23:33.692Z" hostname="redacted" time="8.268">
+<testsuite name="app.epanode.core.AndroidStoreTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-09-28T07:45:05.695Z" hostname="redacted" time="7.878">
   <properties/>
-  <testcase name="loopCannotExtendPastTrackOrReferToMissingAudio[29]" classname="app.epanode.core.AndroidStoreTest" time="4.058"/>
-  <testcase name="invalidBackupDoesNotPartiallyMutateDatabase[29]" classname="app.epanode.core.AndroidStoreTest" time="0.077"/>
-  <testcase name="editsLikesAndHistorySurviveRescansAndDatabaseReopen[29]" classname="app.epanode.core.AndroidStoreTest" time="0.045"/>
-  <testcase name="backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths[29]" classname="app.epanode.core.AndroidStoreTest" time="0.047"/>
-  <testcase name="scannerOnlyPrunesDeviceRowsAfterCompleteScan[29]" classname="app.epanode.core.AndroidStoreTest" time="0.038"/>
-  <testcase name="playlistOrderDedupAndRemovalPersist[29]" classname="app.epanode.core.AndroidStoreTest" time="0.024"/>
-  <testcase name="downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled[29]" classname="app.epanode.core.AndroidStoreTest" time="0.022"/>
-  <testcase name="downloadsRoundTripFailureProgressAndRetryState[29]" classname="app.epanode.core.AndroidStoreTest" time="0.022"/>
-  <testcase name="loopCannotExtendPastTrackOrReferToMissingAudio" classname="app.epanode.core.AndroidStoreTest" time="3.663"/>
+  <testcase name="loopCannotExtendPastTrackOrReferToMissingAudio[29]" classname="app.epanode.core.AndroidStoreTest" time="3.785"/>
+  <testcase name="invalidBackupDoesNotPartiallyMutateDatabase[29]" classname="app.epanode.core.AndroidStoreTest" time="0.033"/>
+  <testcase name="editsLikesAndHistorySurviveRescansAndDatabaseReopen[29]" classname="app.epanode.core.AndroidStoreTest" time="0.035"/>
+  <testcase name="backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths[29]" classname="app.epanode.core.AndroidStoreTest" time="0.032"/>
+  <testcase name="scannerOnlyPrunesDeviceRowsAfterCompleteScan[29]" classname="app.epanode.core.AndroidStoreTest" time="0.024"/>
+  <testcase name="playlistOrderDedupAndRemovalPersist[29]" classname="app.epanode.core.AndroidStoreTest" time="0.027"/>
+  <testcase name="downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled[29]" classname="app.epanode.core.AndroidStoreTest" time="0.023"/>
+  <testcase name="downloadsRoundTripFailureProgressAndRetryState[29]" classname="app.epanode.core.AndroidStoreTest" time="0.02"/>
+  <testcase name="loopCannotExtendPastTrackOrReferToMissingAudio" classname="app.epanode.core.AndroidStoreTest" time="3.712"/>
   <testcase name="invalidBackupDoesNotPartiallyMutateDatabase" classname="app.epanode.core.AndroidStoreTest" time="0.028"/>
-  <testcase name="editsLikesAndHistorySurviveRescansAndDatabaseReopen" classname="app.epanode.core.AndroidStoreTest" time="0.032"/>
-  <testcase name="backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths" classname="app.epanode.core.AndroidStoreTest" time="0.034"/>
-  <testcase name="scannerOnlyPrunesDeviceRowsAfterCompleteScan" classname="app.epanode.core.AndroidStoreTest" time="0.046"/>
-  <testcase name="playlistOrderDedupAndRemovalPersist" classname="app.epanode.core.AndroidStoreTest" time="0.051"/>
-  <testcase name="downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled" classname="app.epanode.core.AndroidStoreTest" time="0.044"/>
-  <testcase name="downloadsRoundTripFailureProgressAndRetryState" classname="app.epanode.core.AndroidStoreTest" time="0.028"/>
+  <testcase name="editsLikesAndHistorySurviveRescansAndDatabaseReopen" classname="app.epanode.core.AndroidStoreTest" time="0.03"/>
+  <testcase name="backupRestoresMetadataPlaylistsAndClipsWithoutAddingUntrustedPaths" classname="app.epanode.core.AndroidStoreTest" time="0.03"/>
+  <testcase name="scannerOnlyPrunesDeviceRowsAfterCompleteScan" classname="app.epanode.core.AndroidStoreTest" time="0.021"/>
+  <testcase name="playlistOrderDedupAndRemovalPersist" classname="app.epanode.core.AndroidStoreTest" time="0.024"/>
+  <testcase name="downloadProgressKeepsTheLibrarySnapshotAndCancelledJobsStayCancelled" classname="app.epanode.core.AndroidStoreTest" time="0.023"/>
+  <testcase name="downloadsRoundTripFailureProgressAndRetryState" classname="app.epanode.core.AndroidStoreTest" time="0.026"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
 ]]></system-err>

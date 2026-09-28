@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="app.epanode.core.CatalogLiveTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-28T06:23:54.161Z" hostname="redacted" time="3.265">
+<testsuite name="app.epanode.core.CatalogLiveTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-28T07:45:24.651Z" hostname="redacted" time="2.969">
   <properties/>
-  <testcase name="searchAndResolveAnOpenMusicTrack" classname="app.epanode.core.CatalogLiveTest" time="2.861"/>
-  <testcase name="spotifyPublicTrackMetadata" classname="app.epanode.core.CatalogLiveTest" time="0.404"/>
+  <testcase name="searchAndResolveAnOpenMusicTrack" classname="app.epanode.core.CatalogLiveTest" time="2.467"/>
+  <testcase name="spotifyPublicTrackMetadata" classname="app.epanode.core.CatalogLiveTest" time="0.502"/>
   <system-out><![CDATA[LIVE music search and audio resolution succeeded; format=m4a
 LIVE Spotify public track metadata succeeded
 ]]></system-out>
