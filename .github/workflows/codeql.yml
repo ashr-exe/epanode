@@ -26,14 +26,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: gradle/actions/setup-gradle@4733eaac7c1b0da527e4206b7671e0061de1ce37 # v6
+      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6
       - run: |
           test -f "$ANDROID_HOME/platforms/android-36/android.jar"
           test -x "$ANDROID_HOME/build-tools/35.0.0/aapt2"
-      - uses: github/codeql-action/init@7999b86c43a865dc79d8923397f35af22de63401 # v4
+      - uses: github/codeql-action/init@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4
         with:
           languages: java-kotlin
           build-mode: manual
       - name: Build Kotlin for analysis
         run: ./gradlew --no-daemon :app:assembleDebug
-      - uses: github/codeql-action/analyze@7999b86c43a865dc79d8923397f35af22de63401 # v4
+      - uses: github/codeql-action/analyze@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4
