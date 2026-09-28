@@ -72,6 +72,7 @@ class EpanodeFunctionalTest {
         compose.onNodeWithText("New playlist name").performTextInput("Late nights")
         compose.onNodeWithText("Create & add").performScrollTo().performClick()
         compose.waitUntil(5000) { app.store.library.value.playlists.any { it.name == "Late nights" && songs[0].id in it.trackIds } }
+        dismissMessage("Playlist created.")
         openSongMenu()
         compose.onNodeWithText("Save a best part").performScrollTo().performClick()
         compose.onNodeWithText("Start · m:ss.sss").performTextReplacement("0:01.000")
@@ -79,10 +80,20 @@ class EpanodeFunctionalTest {
         compose.onNodeWithText("Name this moment").performTextReplacement("That perfect chorus")
         compose.onNodeWithText("Save best part").performScrollTo().performClick()
         compose.waitUntil(5000) { app.store.library.value.parts.any { it.label == "That perfect chorus" } }
+        dismissMessage("Best part saved.")
         compose.onAllNodesWithText("Best parts").onFirst().performClick()
         compose.onNodeWithContentDescription("Loop That perfect chorus").performScrollTo().performClick()
+        try {
+            compose.waitUntil(5000) { connection.state.value.part == "That perfect chorus" && connection.state.value.playing }
+        } catch (e: Throwable) {
+            throw AssertionError("Clip button did not start playback: ${connection.state.value}\n" + compose.onAllNodes(isRoot()).onLast().printToString(), e)
+        }
         compose.onNodeWithContentDescription("Open player for Night Drive").assertIsDisplayed().performClick()
-        compose.waitUntil(5000) { compose.onAllNodesWithText("BEST PART ON REPEAT").fetchSemanticsNodes().isNotEmpty() }
+        try {
+            compose.waitUntil(5000) { compose.onAllNodesWithText("BEST PART ON REPEAT").fetchSemanticsNodes().isNotEmpty() }
+        } catch (e: Throwable) {
+            throw AssertionError("Full player did not open: ${connection.state.value}\n" + compose.onAllNodes(isRoot()).onLast().printToString(), e)
+        }
         compose.onNodeWithText("BEST PART ON REPEAT").assertIsDisplayed()
         compose.onNodeWithText("Lyrics").performClick()
         compose.onNodeWithText("In the quiet of the night").assertExists()
@@ -139,6 +150,11 @@ class EpanodeFunctionalTest {
         compose.waitUntil(12000) { connection.state.value.trackId == songs[1].id }
         compose.runOnUiThread { assertEquals(Player.REPEAT_MODE_ALL, connection.controller!!.repeatMode); connection.controller!!.pause() }
     }
+    private fun dismissMessage(text: String) {
+        compose.waitUntil(5000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithContentDescription("Dismiss message").performClick()
+        compose.waitUntil(5000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isEmpty() }
+    }
     private fun openSongMenu() {
         // Compose idle does not include the platform IME animation. Its closing resize can
         // move a node between resolving its bounds and delivering the injected touch.
@@ -151,6 +167,10 @@ class EpanodeFunctionalTest {
             hidden
         }
         compose.waitForIdle()
+        if (compose.onAllNodesWithContentDescription("Dismiss message").fetchSemanticsNodes().isNotEmpty()) {
+            compose.onNodeWithContentDescription("Dismiss message").performClick()
+            compose.waitUntil(5000) { compose.onAllNodesWithContentDescription("Dismiss message").fetchSemanticsNodes().isEmpty() }
+        }
         compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst()
             .performScrollTo().assertIsDisplayed().performClick()
         try {

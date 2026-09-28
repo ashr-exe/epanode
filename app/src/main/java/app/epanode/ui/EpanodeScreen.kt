@@ -79,7 +79,13 @@ import kotlinx.coroutines.withContext
     LaunchedEffect(playbackError) { playbackError?.let { snack.showSnackbar(it); PlaybackService.playbackError.value = null } }
     BackHandler(collection != null || settings) { collection = null; settings = false }
     val now = library.tracks.find { it.id == player.trackId }
-    Scaffold(containerColor = Ink, snackbarHost = { SnackbarHost(snack) }, bottomBar = {
+    Scaffold(containerColor = Ink, snackbarHost = {
+        SnackbarHost(snack) { data ->
+            Snackbar(dismissAction = { IconButton(onClick = { data.dismiss() }) { Glyph(Icons.Rounded.Close, "Dismiss message", color = MaterialTheme.colorScheme.inverseOnSurface) } }) {
+                Text(data.visuals.message)
+            }
+        }
+    }, bottomBar = {
         Column(Modifier.background(Ink).navigationBarsPadding()) {
             if (now != null) MiniPlayer(vm, now) { fullPlayer = true }
             NavigationBar(containerColor = Ink, tonalElevation = 0.dp, windowInsets = WindowInsets(0), modifier = Modifier.height(76.dp)) {
