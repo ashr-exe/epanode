@@ -75,6 +75,17 @@ jobs:
           arch: x86_64
           disable-animations: true
           script: ./gradlew --no-daemon :app:connectedDebugAndroidTest
+      - name: Print device test failures
+        if: failure()
+        run: |
+          python3 - <<'PYTEST'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          for path in Path('app/build/outputs/androidTest-results').rglob('*.xml'):
+              for test in ET.parse(path).iter('testcase'):
+                  for failure in test.findall('failure'):
+                      print(test.get('name'), failure.text)
+          PYTEST
       - name: Upload device test reports
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7

@@ -125,8 +125,8 @@ import kotlinx.coroutines.withContext
     if (fullPlayer && now != null) FullPlayer(vm, now, library, onDismiss = { fullPlayer = false }, onPart = { clipping = now }, onEdit = { editing = now })
     selected?.let { t ->
         var playlistName by remember(t.id) { mutableStateOf("") }
-        ModalBottomSheet(onDismissRequest = { selected = null; playlistFor = null }, containerColor = Panel) {
-            Column(Modifier.padding(horizontal = 24.dp).padding(bottom = 30.dp)) {
+        ModalBottomSheet(onDismissRequest = { selected = null; playlistFor = null }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true), containerColor = Panel) {
+            Column(Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 24.dp).padding(bottom = 30.dp)) {
                 TrackRow(vm, t, onClick = {})
                 if (playlistFor != null) {
                     Text("Add to playlist", fontSize = 22.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(vertical = 16.dp))

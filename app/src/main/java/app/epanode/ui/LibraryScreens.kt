@@ -28,6 +28,8 @@ import kotlinx.coroutines.withContext
     var query by rememberSaveable { mutableStateOf("") }
     var sort by rememberSaveable { mutableStateOf("A–Z") }
     var sortMenu by remember { mutableStateOf(false) }
+    val focus = androidx.compose.ui.platform.LocalFocusManager.current
+    val keyboard = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
     val player by vm.player.state.collectAsStateWithLifecycle()
     val filtered by produceState(library.tracks, query, library.tracks, sort) {
         if (query.isNotEmpty()) delay(180)
@@ -53,7 +55,7 @@ import kotlinx.coroutines.withContext
             if (library.tracks.isEmpty()) item { EmptyState("Make yourself at home", "Find the audio on your phone, or choose a music folder.", action = "Find my music", onAction = scan); OutlinedButton(onClick = folder, modifier = Modifier.fillMaxWidth()) { Text("Choose a folder") } }
             else if (filtered.isEmpty() && category != "Playlists") item { EmptyState("No songs found", "Try a different spelling, artist, or a lyric you saved.", Icons.Rounded.SearchOff) }
             else when (category) {
-                "Songs" -> items(filtered, key = { it.id }) { t -> TrackRow(vm, t, player.trackId == t.id, onClick = { vm.player.play(filtered, filtered.indexOf(t)) }, onMore = { more(t) }) }
+                "Songs" -> items(filtered, key = { it.id }) { t -> TrackRow(vm, t, player.trackId == t.id, onClick = { focus.clearFocus(); keyboard?.hide(); vm.player.play(filtered, filtered.indexOf(t)) }, onMore = { more(t) }) }
                 "Playlists" -> {
                     item { GroupRow("Liked songs", "${library.tracks.count { it.liked }} songs", Icons.Rounded.Favorite) { open("liked", "Liked songs") } }
                     items(library.playlists.filter { MusicLogic.score(query, it.name) > 0 }, key = { it.id }) { p -> GroupRow(p.name, "${p.trackIds.count { id -> library.tracks.any { it.id == id } }} songs", Icons.Rounded.QueueMusic) { open("playlist:${p.id}", p.name) } }

@@ -19,7 +19,6 @@ import org.junit.runner.RunWith
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.sin
 
 @RunWith(AndroidJUnit4::class)
@@ -28,6 +27,7 @@ class EpanodeFunctionalTest {
     private lateinit var app: EpanodeApp
     private val fixtureUris = mutableListOf<Uri>()
     private lateinit var songs: List<Track>
+    private lateinit var connection: PlayerConnection
     @Before fun seedLocalAudio() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.uiAutomation.executeShellCommand("pm grant app.epanode android.permission.READ_MEDIA_AUDIO").close()
@@ -46,8 +46,13 @@ class EpanodeFunctionalTest {
             app.store.upsertTracks(songs)
         }
         compose.waitUntil(15000) { app.store.library.value.tracks.any { it.id == songs[0].id } }
+        compose.runOnUiThread { connection = PlayerConnection(app) }
+        compose.waitUntil(10000) { connection.controller != null }
     }
     @After fun cleanFiles() {
+        if (::connection.isInitialized) compose.runOnUiThread {
+            connection.controller?.apply { pause(); clearMediaItems() }; connection.release()
+        }
         fixtureUris.forEach { app.contentResolver.delete(it, null, null); app.store.writableDatabase.delete("tracks", "id=?", arrayOf(MusicLogic.id(it.toString()))) }
         app.store.refresh()
         PlaybackService.playbackError.value = null
@@ -58,16 +63,16 @@ class EpanodeFunctionalTest {
         compose.waitUntil(5000) { compose.onAllNodesWithText("Night Drive").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("Night Drive").performClick()
         compose.waitUntil(15000) { PlaybackService.playbackError.value == null && app.store.library.value.tracks.any { it.id == songs[0].id && it.plays > 0 } }
-        compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst().performClick()
-        compose.onNodeWithText("Like song").performClick()
+        openSongMenu()
+        compose.onNodeWithText("Like song").performScrollTo().performClick()
         compose.waitUntil(5000) { app.store.library.value.tracks.find { it.id == songs[0].id }?.liked == true }
-        compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst().performClick()
-        compose.onNodeWithText("Add to playlist").performClick()
+        openSongMenu()
+        compose.onNodeWithText("Add to playlist").performScrollTo().performClick()
         compose.onNodeWithText("New playlist name").performTextInput("Late nights")
-        compose.onNodeWithText("Create & add").performClick()
+        compose.onNodeWithText("Create & add").performScrollTo().performClick()
         compose.waitUntil(5000) { app.store.library.value.playlists.any { it.name == "Late nights" && songs[0].id in it.trackIds } }
-        compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst().performClick()
-        compose.onNodeWithText("Save a best part").performClick()
+        openSongMenu()
+        compose.onNodeWithText("Save a best part").performScrollTo().performClick()
         compose.onNodeWithText("Start · m:ss.sss").performTextReplacement("0:01.000")
         compose.onNodeWithText("End · m:ss.sss").performTextReplacement("0:02.500")
         compose.onNodeWithText("Name this moment").performTextReplacement("That perfect chorus")
@@ -105,22 +110,41 @@ class EpanodeFunctionalTest {
         }
     }
     @Test fun actualAudioEngineLoopsClipsAndAdvancesHighlightQueue() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        lateinit var connection: PlayerConnection
-        compose.runOnUiThread { connection = PlayerConnection(context) }
-        compose.waitUntil(10000) { connection.controller != null }
-        val loops = AtomicInteger(0)
         val part = BestPart("engine-part-a", songs[0].id, "Loop A", 1000, 2000)
         val second = BestPart("engine-part-b", songs[1].id, "Loop B", 2000, 3500)
         runBlocking(Dispatchers.IO) { app.store.savePart(part); app.store.savePart(second) }
         compose.runOnUiThread {
-            connection.controller!!.addListener(object : Player.Listener { override fun onMediaItemTransition(item: androidx.media3.common.MediaItem?, reason: Int) { if (reason == Player.MEDIA_ITEM_TRANSITION_REASON_REPEAT) loops.incrementAndGet() } })
             connection.play(listOf(songs[0]), highlights = true, singlePart = part)
         }
-        compose.waitUntil(15000) { loops.get() >= 2 }
+        // MediaController 1.8.1 suppresses onMediaItemTransition when the item is unchanged.
+        // Observe real engine position wrapping, rather than a callback it never forwards.
+        var previousPosition = 0L
+        var wraps = 0
+        var diagnostic = "Not sampled"
+        try {
+            compose.waitUntil(15000) {
+                compose.runOnUiThread {
+                    val c = connection.controller!!
+                    val position = c.currentPosition
+                    diagnostic = "state=${c.playbackState}, playing=${c.isPlaying}, duration=${c.duration}, position=$position, repeat=${c.repeatMode}, wraps=$wraps, error=${c.playerError}"
+                    if (c.isPlaying && previousPosition - position > 400) wraps++
+                    previousPosition = position
+                }
+                wraps >= 2
+            }
+        } catch (e: Throwable) { throw AssertionError("Clip did not wrap twice: $diagnostic", e) }
         compose.runOnUiThread { assertTrue(connection.controller!!.isPlaying); assertEquals(1000L, connection.controller!!.duration); connection.play(songs.take(2), parts = listOf(part, second), highlights = true) }
         compose.waitUntil(12000) { connection.state.value.trackId == songs[1].id }
-        compose.runOnUiThread { assertEquals(Player.REPEAT_MODE_ALL, connection.controller!!.repeatMode); connection.controller!!.pause(); connection.release() }
+        compose.runOnUiThread { assertEquals(Player.REPEAT_MODE_ALL, connection.controller!!.repeatMode); connection.controller!!.pause() }
+    }
+    private fun openSongMenu() {
+        compose.onAllNodesWithContentDescription("More options for Night Drive").onFirst()
+            .performScrollTo().assertIsDisplayed().performClick()
+        try {
+            compose.waitUntil(5000) { compose.onAllNodesWithText("Play next").fetchSemanticsNodes().isNotEmpty() }
+        } catch (e: Throwable) {
+            throw AssertionError("Song menu did not open:\n" + compose.onRoot().printToString(), e)
+        }
     }
     private fun wave(seconds: Int, frequency: Double): ByteArray {
         val sampleRate = 16000; val count = seconds * sampleRate; val size = count * 2
