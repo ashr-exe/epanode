@@ -13,6 +13,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -41,7 +43,7 @@ import kotlinx.coroutines.delay
 }
 @Composable fun MiniPlayer(vm: AppViewModel, track: Track, expand: () -> Unit) {
     val player by vm.player.state.collectAsStateWithLifecycle()
-    Column(Modifier.padding(horizontal = 12.dp, vertical = 4.dp).clip(RoundedCornerShape(16.dp)).background(Raised).clickable(onClick = expand)) {
+    Column(Modifier.padding(horizontal = 12.dp, vertical = 4.dp).clip(RoundedCornerShape(16.dp)).background(Raised).semantics { contentDescription = "Open player for ${track.title}" }.clickable(onClick = expand)) {
         Row(Modifier.padding(start = 8.dp, top = 7.dp, bottom = 7.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Artwork(vm, track, Modifier.size(44.dp), 10)
             Column(Modifier.weight(1f).padding(horizontal = 11.dp)) {

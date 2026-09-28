@@ -80,7 +80,8 @@ class EpanodeFunctionalTest {
         compose.waitUntil(5000) { app.store.library.value.parts.any { it.label == "That perfect chorus" } }
         compose.onAllNodesWithText("Best parts").onFirst().performClick()
         compose.onNodeWithContentDescription("Loop That perfect chorus").performScrollTo().performClick()
-        compose.onAllNodesWithText("Night Drive").onLast().performClick()
+        compose.onNodeWithContentDescription("Open player for Night Drive").assertIsDisplayed().performClick()
+        compose.waitUntil(5000) { compose.onAllNodesWithText("BEST PART ON REPEAT").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("BEST PART ON REPEAT").assertIsDisplayed()
         compose.onNodeWithText("Lyrics").performClick()
         compose.onNodeWithText("In the quiet of the night").assertExists()
